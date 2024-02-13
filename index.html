@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="./styles.css">
+        
+    </head> 
+    <body>
+        <div class="container">
+            <div>
+                <h1 class="second_header" id ="transitioningText">Hi dunapotha &lt;3</h1>
+            </div>    
+            <div class="gif_container">
+                <img src="https://www.icegif.com/wp-content/uploads/2022/06/icegif-701.gif" alt="Cute animated illustration">
+            </div>
+            <div class="heart" style="position: absolute; top: 50px; left: 100px; transform: rotate(-70deg);"></div>
+            <div class="heart" style="position: absolute; top: 50px; right: 800px; transform: rotate(-70deg);"></div>
+            <div class="heart" style="position: absolute; bottom: 50px; right: 800px; transform: rotate(-70deg);"></div>
+
+
+            <div class="heart" style="position: absolute; top: 50px; right: 100px; transform: rotate(-240deg);"></div>
+            <div class="heart" style="position: absolute; bottom: 500px; right: 400px; transform: rotate(-240deg);"></div>
+            <div class="heart" style="position: absolute; bottom: 300px; left: 325px; transform: rotate(-240deg);"></div>
+            <div class="heart" style="position: absolute; bottom: 560px; left: 236px; transform: rotate(-240deg);"></div>
+
+
+
+            <div class="heart" style="position: absolute; border-bottom: 50px; left: 200px; transform: rotate(20deg);"></div>
+            <div class="heart" style="position: absolute; border-top: 50px; right: 200px; transform: rotate(20deg);"></div>
+            <div class="heart" style="position: absolute; bottom: 120px; right: 250px; transform: rotate(-160deg);"></div>
+
+            <script>
+                function createAndPlaceHearts(numberOfHearts) {
+                    const container = document.querySelector('.container');
+                    const mainContent = document.querySelector('.main-content');
+
+                    for (let i = 0; i < numberOfHearts; i++) {
+                        const heart = document.createElement('div');
+                        heart.className = 'heart';
+                        
+                        // Randomly position hearts, but not where the main content is
+                        let randomTop, randomLeft;
+                        do {
+                        randomTop = Math.random() * (window.innerHeight - heartHeight);
+                        randomLeft = Math.random() * (window.innerWidth - heartWidth);
+                        } while (isOverlapping(mainContent, randomTop, randomLeft, heartWidth, heartHeight))
+
+                        heart.style.top = `${randomTop}px`;
+                        heart.style.left = `${randomLeft}px`;
+
+                        container.appendChild(heart);
+                    }
+                    }
+
+                    function isOverlapping(element, top, left, width, height) {
+                    const rect = element.getBoundingClientRect();
+                    
+                    return (
+                        top + height > rect.top &&
+                        top < rect.top + rect.height &&
+                        left + width > rect.left &&
+                        left < rect.left + rect.width
+                    );
+                    }
+
+
+                    window.onload = () => createAndPlaceHearts(20);
+            </script>
+
+
+
+            <div class = "buttons">
+                <button class="btn" id = "yesButton" onclick="nextPage()">Yes</button>
+                <script>
+                    function nextPage() {
+                        window.location.href = "yes.html";
+                    }
+                </script>
+                <button class="btn" id = "noButton">No</button>
+                <script src="script.js"></script>
+            </div>
+        </div>
+       
+    </body> 
+</html>
